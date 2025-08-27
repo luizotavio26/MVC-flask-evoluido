@@ -1,7 +1,12 @@
 import os
 from flask import Flask
 from config import Config # importa as 
+
 from controllers.user_controller import UserController
+
+#IMPORTAR CONTROLLER TASKS AQUI
+#from controllers.
+
 from models.user import db
 
 app = Flask(__name__, template_folder=os.path.join('view', 'templates'))
@@ -19,6 +24,9 @@ with app.app_context():
 app.add_url_rule('/', 'index',  UserController.index)
 app.add_url_rule('/contact', 'contact', UserController.contact, methods=['GET', 'POST'])
 
+#ROTAS DA TASM
+app.add_url_rule('/', 'index', )
+app.add_url_rule('/contact', 'contact', )
 
 if __name__ == '__main__':
     app.run(debug=True, port=5002)
