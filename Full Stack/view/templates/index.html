@@ -6,13 +6,18 @@
     <title>Cadastro de Usuário</title>
 </head>
 <body>
-    <h1>Home</h1>
+    <h1>Usuários</h1>
 
     <ul>
         {% for user in users %}
         <li>{{user.name}} - {{user.email}}</li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('contact') }}">Página de Cadastro</a>
+    <a href="{{ url_for('contact') }}">Página de Cadastro</a></br>
+    <a href="{{ url_for('create_tasks') }}">Criar tarefas</a></br>
+    <a href="{{ url_for('tasks') }}">Minhas tarefas</a>
+
+
+
 </body>
 </html>

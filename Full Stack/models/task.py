@@ -1,23 +1,20 @@
 from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from models.user import User  # Import necessário
+from models.user import db
 
 class Task(db.Model):
     __tablename__ = 'tasks'
+
     id = db.Column(db.Integer, primary_key=True)
-    tittle = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(100), nullable=False)
     status = db.Column(db.String(100), nullable=False, default="Pendente")
     
-    user_id =  db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    users = db.relationship("users", back_populates="tasks")
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user = db.relationship("User", back_populates="tasks")  # deve bater com 'tasks'
 
-
-    def __init__(self, id, status, tittle, description, user_id):
-        self.id = id
-        self.status = status
-        self.tittle = tittle
+    def __init__(self, title, description, user_id, status="Pendente"):
+        self.title = title
         self.description = description
         self.user_id = user_id
-
-    
+        self.status = status

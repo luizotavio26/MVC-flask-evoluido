@@ -11,7 +11,8 @@
 </head>
 
 <body>
-    <a href="create_tasks.html">Crir nova tarefa</a>
+    <form method="POST">
+        <a href="{{ url_for('create_tasks') }}">Criar tarefas</a></br>
     </p>
     Tarefas Atuais
     </p>
@@ -27,6 +28,9 @@
         </tr>
 
     </TAble>
+
+    </form>
+    
 
 </body>
 

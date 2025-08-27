@@ -3,7 +3,7 @@ from flask import Flask
 from config import Config # importa as 
 
 from controllers.user_controller import UserController
-
+from controllers.task_controller import TaskController
 #IMPORTAR CONTROLLER TASKS AQUI
 #from controllers.
 
@@ -24,9 +24,13 @@ with app.app_context():
 app.add_url_rule('/', 'index',  UserController.index)
 app.add_url_rule('/contact', 'contact', UserController.contact, methods=['GET', 'POST'])
 
+#app.add_url_rule('/', 'tasks', TaskController.list_tasks)
+app.add_url_rule('/tasks', 'tasks', TaskController.list_tasks)
+
+app.add_url_rule('/create_tasks', 'create_tasks', TaskController.create_task, methods=['GET', 'POST'])
 #ROTAS DA TASM
-app.add_url_rule('/', 'index', )
-app.add_url_rule('/contact', 'contact', )
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5002)

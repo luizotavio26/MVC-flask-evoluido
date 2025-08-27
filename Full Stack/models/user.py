@@ -9,3 +9,4 @@ class User(db.Model): # Declaração de um novo modelo/tabela: User
     email = db.Column(db.String(100), unique=True, nullable=False)
 
     __tablename__ = 'users'
+    tasks = db.relationship('Task', back_populates='user')

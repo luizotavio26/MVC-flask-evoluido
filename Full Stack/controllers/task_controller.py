@@ -12,7 +12,7 @@ class TaskController:
     def create_task():
         if request.method == 'GET':
             users = User.query.all()
-            return render_template('create_task.html', users=users)
+            return render_template('create_tasks.html', users=users)
 
         elif request.method == 'POST':
             title = request.form['title']
