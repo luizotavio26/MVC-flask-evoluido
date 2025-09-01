@@ -13,11 +13,10 @@ class UserController:
             name = request.form['name']
             email = request.form['email']
 
-            # validações simples: se usuário já existe no db, etc
-
-            new_user = User(name=name, email=email)
-            db.session.add(new_user)
-            db.session.commit()
+            if name and email: 
+                new_user = User(name=name, email=email)
+                db.session.add(new_user)
+                db.session.commit()
 
             return redirect(url_for('index'))
 

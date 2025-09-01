@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-br">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="UTF-8">
     <title>Minhas Tarefas</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
 </head>
-
 <body>
-    <form method="POST">
-        <a href="{{ url_for('create_tasks') }}">Criar tarefas</a></br>
-    </p>
-    Tarefas Atuais
-    </p>
+    <h1>Minhas Tarefas</h1>
+    <a href="{{ url_for('create_task') }}">Criar Nova Tarefa</a>
+    <br><br>
 
-    <TAble >
-        <tr border="2">
-            <td>Titulo</td>
-            <td>Descrição</td>
-            <td>Status</td>
-            <td>Nome do Usuário</td>
-            <td><input type="button" value="Concluir" onclick="update_task_status()"></td>
-            <td><input type="button" value="Excluir" onclick="delete_task()"></td>
-        </tr>
-
-    </TAble>
-
-    </form>
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Status</th>
+                <th>Usuário</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description or '-' }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.user.name }}</td>
+                <td>
+                    <a href="{{ url_for('update_task_status', task_id=task.id) }}">Concluir</a>
+                    <a href="{{ url_for('delete_task', task_id=task.id) }}">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Voltar</a>
     
-
 </body>
-
 </html>

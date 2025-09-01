@@ -1,6 +1,8 @@
 from flask import render_template, request, redirect, url_for
 from models.task import db, Task
 from models.user import User
+
+
 class TaskController:
 
     @staticmethod
@@ -19,14 +21,15 @@ class TaskController:
             description = request.form['description']
             user_id = request.form['user_id']
 
-            new_task = Task(
-                title=title,
-                description=description,
-                user_id=user_id,
-                status="PENDENTE"
-            )
-            db.session.add(new_task)
-            db.session.commit()
+
+            if title and user_id: 
+                new_task = Task(
+                    title=title,
+                    description=description,
+                    user_id=user_id
+                )
+                db.session.add(new_task)
+                db.session.commit()
 
             return redirect(url_for('list_tasks'))
 
@@ -34,7 +37,7 @@ class TaskController:
     def update_task_status(task_id):
         task = Task.query.get(task_id)
         if task:
-            task.status = "CONCLUIDO" if task.status == "PENDENTE" else "PENDENTE"
+            task.status = "Concluído" if task.status == "Pendente" else "Pendente"
             db.session.commit()
         return redirect(url_for('list_tasks'))
 

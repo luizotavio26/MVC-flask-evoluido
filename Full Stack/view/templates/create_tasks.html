@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-br">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Criar Task</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+    <meta charset="UTF-8">
+    <title>Criar Nova Tarefa</title>
 </head>
-
 <body>
+    <h1>Criar Nova Tarefa</h1>
 
-    <form action="" method="POST">
-        Titulo: <input type="text" name="tittle"><br>
-        Descrição: <input type="text" name="description"><br>
-        Responsável: <select name="user_name">
-            <option value="Ana">Ana</option>
-            <option value="Beatriz">Beatriz</option>
-            <option value="Carlos">Carlos</option>
+    <form method="POST" action="{{ url_for('create_task') }}">
+        <label for="title">Título:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="description">Descrição:</label><br>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label for="user_id">Usuário:</label><br>
+        <select id="user_id" name="user_id" required>
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.name }}</option>
+            {% endfor %}
         </select><br><br>
-        <a href="{{ url_for('tasks') }}">Criar</a>
-    </form>
-</body>
 
+        <button type="submit">Criar Tarefa</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('list_tasks') }}">Voltar para Minhas Tarefas</a>
+    
+</body>
 </html>

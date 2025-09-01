@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
 </head>
+
 <body>
     <h1>Usuários</h1>
 
@@ -14,9 +14,8 @@
         {% endfor %}
     </ul>
     <a href="{{ url_for('contact') }}">Página de Cadastro</a></br>
-    <a href="{{ url_for('create_tasks') }}">Criar tarefas</a></br>
-    <a href="{{ url_for('tasks') }}">Minhas tarefas</a>
-
+    <a href="{{ url_for('create_task') }}">Criar tarefas</a></br>
+    <a href="{{ url_for('list_tasks') }}">Minhas tarefas</a></br>
 
 
 </body>
